@@ -1,0 +1,19 @@
+services:
+  backend:
+    build:
+      context: ./
+      dockerfile: backend.dockerfile
+    ports:
+      - "3344:8000"
+    restart: always
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - ./data:/app/data
+    networks:
+      - chatbot_network
+
+networks:
+  chatbot_network:
+    driver: bridge
